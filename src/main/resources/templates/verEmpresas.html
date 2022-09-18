@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de Empresas</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        a{
+           color: white;
+        }
+        a:hover{
+            color: black;
+            text-decoration:none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container-fluid">
+    <h1>Lista de Empresas</h1>
+    <!--Dibujamos la tabal-->
+    <br><table class="table table-bordered">
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Nit</th>
+            <th>Direccion</th>
+            <th>Telefono</th>
+            <th>Fecha Creacion</th>
+            <th>Fecha Actualizacion</th>
+
+            <th>Editar</th>
+            <th>Eliminar</th>
+        </tr>
+        <!--Llenamos la tabla dibujada-->
+        <tr th:each="empresa : ${emplist}">
+            <td th:text="${empresa.idEmpresa}"></td>
+            <td th:text="${empresa.nombre}"></td>
+            <td th:text="${empresa.nit}"></td>
+            <td th:text="${empresa.direccion}"></td>
+            <td th:text="${empresa.telefono}"></td>
+            <td th:text="${empresa.fechaCreacion}"></td>
+            <td th:text="${empresa.fechaActualizacion}"></td>
+            <td><button type="button" class="btn btn-warning"><a th:href="@{/EditarEmpresa/{id}(id=${empresa.idEmpresa})}">Editar</a></button></td>
+            <td><button type="button" class="btn btn-danger"><a th:href="@{/EliminarEmpresa/{id}(id=${empresa.idEmpresa})}">Eliminar</a></button></td>
+        </tr>
+    </table>
+
+    <!--Crear boton que sirve para agregar nuevas empresas-->
+    <button type="button" class="btn btn-info"><a th:href="@{/AgregarEmpresa}">Agregar Nueva Empresa</a></button>
+</div>
+
+</body>
+</html>

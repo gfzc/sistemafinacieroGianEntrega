@@ -1,0 +1,49 @@
+[33mcommit 867fc597cea79260c78d17f31ddc91b68a79e6f8[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/development[m[33m, [m[1;32mdevelopment[m[33m)[m
+Author: emartinezb <estefa0223@gmail.com>
+Date:   Sat Aug 27 20:48:09 2022 -0500
+
+    Modelo clases en Java
+
+[33mcommit fd0325b0454b0d465164c2e13faeabb8fe6ef472[m
+Merge: 8434d42 5076ee6
+Author: emartinezb <estefa0223@gmail.com>
+Date:   Sat Aug 27 20:28:11 2022 -0500
+
+    Modelo clases en Java
+
+[33mcommit 8434d4263b9768fc24708cdf36e31abfc7d54089[m
+Author: emartinezb <estefa0223@gmail.com>
+Date:   Sat Aug 27 20:16:30 2022 -0500
+
+    Modelo clases en Java
+
+[33mcommit 5076ee61224baf44d737025631361a646b426e5e[m[33m ([m[1;31morigin/main[m[33m)[m
+Merge: f61e799 f3f45ad
+Author: paula.munoz <paula.munoz@ericsson.com>
+Date:   Thu Aug 25 12:41:47 2022 -0500
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit f61e799f62da697d313733b1ad569a623fba0165[m
+Author: paula.munoz <paula.munoz@ericsson.com>
+Date:   Thu Aug 25 12:41:11 2022 -0500
+
+    Prueba 3
+
+[33mcommit f3f45adbbe1cca4512401bc99057d8e2fe608eca[m
+Author: pmmunoz73 <89559852+pmmunoz73@users.noreply.github.com>
+Date:   Thu Aug 25 12:36:31 2022 -0500
+
+    Create README.md
+
+[33mcommit 1b94fad84af10048b03a75f4ce8cd4ce891a84ac[m
+Author: paula.munoz <paula.munoz@ericsson.com>
+Date:   Thu Aug 25 12:34:03 2022 -0500
+
+    Prueba
+
+[33mcommit 9b2c89017984e9c0e36d7c52e258ccc1e1ab497a[m
+Author: paula.munoz <paula.munoz@ericsson.com>
+Date:   Thu Aug 25 12:26:08 2022 -0500
+
+    V1
