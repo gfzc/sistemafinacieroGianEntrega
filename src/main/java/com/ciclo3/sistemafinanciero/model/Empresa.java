@@ -22,9 +22,9 @@ import java.util.List;
 public class Empresa {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_empresa")
-    private Long idEmpresa;
+    private Integer idEmpresa;
 
     @Column (name = "nombre", unique = true)
     private String nombre;
@@ -39,18 +39,18 @@ public class Empresa {
     private String telefono;
 
     @Column(name = "fecha_creacion")
-   // @DateTimeFormat(pattern="yyyy-MM-dd")
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date fechaCreacion;
 
     @Column(name = "fecha_actualizacion")
-    //@DateTimeFormat(pattern="yyyy-MM-dd")
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date fechaActualizacion;
 
-   /* @OneToMany(mappedBy = "empresa")
-    private List<Empleado> empleado;
+    /*@OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL)
+    private List<Empleado> empleado;*/
 
-    @OneToMany(mappedBy = "empresa")
-    private List<Transaccion> transacciones;*/
+ /*@OneToMany(mappedBy = "empresa")
+  private List<Transaccion> transacciones;*/
 
 
 }

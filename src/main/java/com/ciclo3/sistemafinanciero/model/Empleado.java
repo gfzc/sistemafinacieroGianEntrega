@@ -1,9 +1,6 @@
 package com.ciclo3.sistemafinanciero.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -13,21 +10,19 @@ import java.util.List;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+//@Getter
+//Setter
 @Data
-@ToString
 @Table(name = "empleado")
 public class Empleado {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_empleado")
-    private Integer id_Empleado;
+    private Integer idEmpleado;
 
-    @Column(name = "id_empresa")
-    private Integer id_Empresa;
-
-    //@Column(name = "id_perfil")
-    //private String idPerfil;
+   /* @Column(name = "id_empresa")
+    private Integer idEmpresa;*/
 
     @Column (name = "nombre")
     private String nombre;
@@ -35,10 +30,10 @@ public class Empleado {
     @Column(name = "email", unique = true)
     private String email;
 
-    @Column(name = "rol", nullable = false, length = 20)
+   @JoinColumn(name = "rol", insertable = false, updatable = false)
     private String rol;
 
-    @DateTimeFormat(pattern="yyyy-MM-dd")
+   @DateTimeFormat(pattern="yyyy-MM-dd")
     @Column(name = "fecha_creacion")
     private Date fechaCreacion;
 
@@ -47,17 +42,8 @@ public class Empleado {
     private Date fechaActualizacion;
 
     @ManyToOne
-    @JoinColumn(name = "id_Empresa", insertable = false, updatable = false)
+    @JoinColumn(name = "id_empresa")
     private Empresa empresa;
-
-    //@OneToMany(mappedBy = "empleado")
-    //private List<MovimientoDinero> movimientoDinero;
-
-    //@OneToOne
-    //@JoinColumn(name = "id_perfil", insertable = false, updatable = false)
-    //private Perfil perfil;
-
-
 
 
 }

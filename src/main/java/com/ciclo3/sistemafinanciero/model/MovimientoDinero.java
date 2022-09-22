@@ -24,11 +24,11 @@ public class MovimientoDinero {
     @Column(name = "id_movimiento")
     private Integer id_Movimiento;
 
-    @Column(name = "id_empresa")
-    private Integer id_Empresa;
+   /* @Column(name = "id_empresa")
+    private Integer id_Empresa;*/
 
-    @Column(name = "id_empleado")
-    private Integer id_Empleado;
+    /*@Column(name = "id_empleado")
+    private Integer id_Empleado;*/
 
     @Column(name = "concepto")
     private  String concepto;

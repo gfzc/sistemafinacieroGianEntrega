@@ -23,7 +23,7 @@ public class EmpresaService {
 
     }
     //Metodo que trae objeto tipo Empresa cuando cuento con el id de la misma
-    public Empresa getEmpresaById(Long id){
+    public Empresa getEmpresaById(Integer id){
 
         return empresaRepository.findById(id).get();
     }
@@ -36,12 +36,13 @@ public class EmpresaService {
         }
         return false;
     }
-    //Metodo para eliminar objetos de tipo Empresa
-    public boolean deleteEmpresa(Long id){
-        empresaRepository.deleteById(id);
-        if (getEmpresaById(id)!=null){
-            return false;
+    //Metodo para eliminar objetos de tipo Empresa registradas por id
+    public boolean deleteEmpresa(Integer id){
+        empresaRepository.deleteById(id); //Elimina por id
+
+        if (empresaRepository.findById(id)!=null){
+            return true;
         }
-        return true;
+        return false;
     }
 }

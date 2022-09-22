@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Edite Aquí Empresas</title>
+    <title>Editar Empleado</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -21,17 +21,18 @@
 <body>
 
 <div class="container">
-    <h1>Ingrese Los Datos</h1>
+    <h1>Actualice Los Datos</h1>
     <!--Crea formulario para llenar datos de Empresa y los guarda en el objeto emp -->
     <br>
-    <form th:action="@{/ActualizarEmpresa}" th:object="${editEmp}" method="post">
+    <form th:action="@{/ActualizarEmpleado}" th:object="${emple}" method="post">
 
         <!--Campo para id -->
         <div class="row">
             <div class="form-group col-md-12">
-                <label class="col-md-3" for="id">ID de la Empresa:</label>
+                <label class="col-md-3" for="id">ID Empleado:</label>
                 <div class="col-md-6">
-                    <input type="text" th:field="*{idEmpresa}" class="form-control" id="id" required="required" readonly>
+                    <input type="text" th:field="*{idEmpleado}" class="form-control" id="id" required="required"
+                           readonly>
                 </div>
             </div>
         </div>
@@ -39,38 +40,44 @@
         <!--Campo para nombre -->
         <div class="row">
             <div class="form-group col-md-12">
-                <label class="col-md-3" for="nombre">Nombre de la Empresa:</label>
+                <label class="col-md-3" for="nombre">Nombre del Empleado:</label>
                 <div class="col-md-6">
                     <input type="text" th:field="*{nombre}" class="form-control" id="nombre" required="required">
                 </div>
             </div>
         </div>
-        <!--Campo para direccion -->
+        <!--Campo para correo -->
         <div class="row">
             <div class="form-group col-md-12">
-                <label class="col-md-3" for="nit">Nit de la Empresa:</label>
+                <label class="col-md-3" for="email">Correo del Empleado:</label>
                 <div class="col-md-6">
-                    <input type="text" th:field="*{nit}" class="form-control" id="nit" required="required">
+                    <input type="email" th:field="*{email}" class="form-control" id="email" required="required">
                 </div>
             </div>
         </div>
 
-        <!--Campo para direccion -->
+        <!--Campo para empresa -->
         <div class="row">
             <div class="form-group col-md-12">
-                <label class="col-md-3" for="direccion">Direccion de la Empresa:</label>
+                <label class="col-md-3" for="empresa">Empresa del Empleado:</label>
                 <div class="col-md-6">
-                    <input type="text" th:field="*{direccion}" class="form-control" id="direccion" required="required">
+                    <select th:field="*{empresa}" class="form-control" id="empresa" required="required">
+                        <option th:each="empresa : ${emprelist}" th:text="${empresa.nombre}"
+                                th:value="${empresa.idEmpresa}"></option>
+                    </select>
                 </div>
             </div>
         </div>
 
-        <!--Campo para telefono -->
+        <!--Campo para rol -->
         <div class="row">
             <div class="form-group col-md-12">
-                <label class="col-md-3" for="telefono">Telefono de la Empresa:</label>
+                <label class="col-md-3" for="rol">Rol del Empleado:</label>
                 <div class="col-md-6">
-                    <input type="text" th:field="*{telefono}" class="form-control" id="telefono" required="required">
+                    <select th:field="*{rol}" class="form-control" id="rol" required="required">
+                        <option th:value=1>Admin</option>
+                        <option th:value=2>Operario</option>
+                    </select>
                 </div>
             </div>
         </div>
@@ -78,26 +85,29 @@
         <!--Campo para fechaCreacion -->
         <div class="row">
             <div class="form-group col-md-12">
-                <label class="col-md-3" for="fechaCreacion">Fecha Creacion de la Empresa:</label>
+                <label class="col-md-3" for="fechaCreacion">Fecha Creacion del Empleado:</label>
                 <div class="col-md-6">
-                    <input type="text" th:field="*{fechaCreacion}" class="form-control" id="fechaCreacion" required="required" readonly>
+                    <input type="date" th:field="*{fechaCreacion}" class="form-control" id="fechaCreacion"
+                           required="required" readonly>
                 </div>
             </div>
         </div>
 
-<!--        Campo para fechaActualizacion-->
+       <!-- Campo para fechaActualizacion -->
         <div class="row">
             <div class="form-group col-md-12">
-                <label class="col-md-3" for="fechaActualizacion">Fecha Actualizacion de la Empresa:</label>
+                <label class="col-md-3" for="fechaActualizacion">Fecha Actualizacion:</label>
                 <div class="col-md-6">
                     <input type="date" th:field="*{fechaActualizacion}" class="form-control" id="fechaActualizacion">
+
                 </div>
             </div>
         </div>
+
         <!--Crear boton que envia todo y termina-->
         <div class="row">
             <div class="col-md-2">
-                <button class="btn btn-success">Guardar Cambios</button>
+                <button class="btn btn-success">Actualizar Empleado</button>
             </div>
         </div>
     </form>
