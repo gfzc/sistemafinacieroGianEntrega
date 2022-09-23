@@ -22,7 +22,7 @@ public class MovimientoDinero {
     @Id //Id unico y ordinal por "tabla"
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_movimiento")
-    private Integer id_Movimiento;
+    private Integer idMovimiento;
 
    /* @Column(name = "id_empresa")
     private Integer id_Empresa;*/
@@ -34,7 +34,7 @@ public class MovimientoDinero {
     private  String concepto;
 
     @Column(name = "monto")
-    private float monto;
+    private long monto;
 
     @Column(name = "fecha_creacion")
     @DateTimeFormat(pattern="yyyy-MM-dd")
@@ -44,12 +44,12 @@ public class MovimientoDinero {
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date fechaActualizacion;
 
-    @ManyToOne
-    @JoinColumn(name = "id_empresa", insertable = false, updatable = false)
-    private Empresa empresa;
+//    @ManyToOne
+//    @JoinColumn(name = "id_empresa", insertable = false, updatable = false)
+//    private Empresa empresa;
 
     @ManyToOne
-    @JoinColumn(name = "id_empleado", insertable = false, updatable = false)
+    @JoinColumn(name = "id_empleado")
     private Empleado empleado;
 
 

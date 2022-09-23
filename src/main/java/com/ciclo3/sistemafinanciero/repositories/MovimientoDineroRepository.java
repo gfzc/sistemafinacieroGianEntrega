@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 
 @Repository
-public interface MovimientosRepository extends JpaRepository<MovimientoDinero, Integer> {
+public interface MovimientoDineroRepository extends JpaRepository<MovimientoDinero, Integer> {
 
     @Query(value ="select * from movimiento_dinero where id_empleado= ?1", nativeQuery = true)
     public abstract ArrayList<MovimientoDinero> findByEmpleado(Integer id);

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Agregar Movimiento</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        a {
+            color: white;
+        }
+
+        a:hover {
+            color: black;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Modifique los Datos</h1>
+    <!--Crea formulario para modificar datos de Movimientos y los guarda en el objeto mov -->
+    <br>
+    <form th:action="@{/ActualizarMovimiento}" th:object="${mov}" method="post">
+
+        <!--Campo para id -->
+        <div class="row">
+            <div class="form-group col-md-12">
+                <label class="col-md-3" for="id">ID Movimiento:</label>
+                <div class="col-md-6">
+                    <input type="text" th:field="*{idMovimiento}" class="form-control" id="id" required="required" readonly>
+                </div>
+            </div>
+        </div>
+
+        <!--Campo para concepto -->
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <label class="col-md-3" for="concepto">Concepto Movimiento:</label>
+                    <div class="col-md-6">
+                        <select th:field="*{concepto}" class="form-control" id="concepto" required="required">
+                            <option th:value=1>Papeleria</option>
+                            <option th:value=2>Sevicios Publicos/Privados</option>
+                            <option th:value=3>Caja Menor</option>
+                            <option th:value=4>Operativo</option>
+                            <option th:value=5>Tributario</option>
+                            <option th:value=6>Mobiliario</option>
+                            <option th:value=7>Maquinaria y Equipos</option>
+                            <option th:value=8>Nomina</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+        <!--Campo para monto -->
+        <div class="row">
+            <div class="form-group col-md-12">
+                <label class="col-md-3" for="monto">Monto:</label>
+                <div class="col-md-6">
+                    <input type="number" th:field="*{monto}" class="form-control" id="monto" required="required">
+                </div>
+            </div>
+        </div>
+
+        <!--Campo para empleado responsable -->
+        <div class="row">
+            <div class="form-group col-md-12">
+                <label class="col-md-3" for="empleado">Empleado Responsable:</label>
+                <div class="col-md-6">
+                    <select th:field="*{empleado}" class="form-control" id="empleado" required="required">
+                        <option th:each="empleado : ${emplelist}" th:text="${empleado.nombre}" th:value="${empleado.idEmpleado}"></option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!--Campo para fechaCreacion -->
+        <div class="row">
+            <div class="form-group col-md-12">
+                <label class="col-md-3" for="fechaCreacion">Fecha Creacion:</label>
+                <div class="col-md-6">
+                    <input type="date" th:field="*{fechaCreacion}" class="form-control" id="fechaCreacion" required="required" readonly>
+                </div>
+            </div>
+        </div>
+
+        <!--Campo para Fecha Actualizacion -->
+        <div class="row">
+            <div class="form-group col-md-12">
+                <label class="col-md-3" for="fechaActualizacion">Fecha Actualizacion:</label>
+                <div class="col-md-6">
+                    <input type="date" th:field="*{fechaActualizacion}" class="form-control" id="fechaActualizacion">
+                </div>
+            </div>
+        </div>
+
+        <!--Crear boton que envia todo y termina-->
+        <div class="row">
+            <div class="col-md-2">
+                <button class="btn btn-success">Registrar Movimiento</button>
+            </div>
+        </div>
+    </form>
+
+    <br>
+    <a href="javascript:history.go(-1)" class="btn btn-info" role="button">Atrás</a>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de Movimientos</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <style>
+        a {
+            color: white;
+        }
+
+        a:hover {
+            color: black;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container-fluid">
+    <h1>Lista de Movimientos</h1>
+    <!--Dibujamos la tabal-->
+    <br>
+    <table class="table table-bordered">
+        <tr>
+            <th>ID</th>
+            <th>Concepto</th>
+            <th>Monto</th>
+            <!--<th>Empresa</th>-->
+            <th>Empleado</th>
+            <th>Fecha Creacion</th>
+            <th>Fecha Actualizacion</th>
+            <th>Editar</th>
+            <th>Eliminar</th>
+        </tr>
+        <!--Llenamos la tabla dibujada-->
+        <tr th:each="movimiento : ${listMovimientos}">
+            <td th:text="${movimiento.idMovimiento}"></td>
+<!--            <td th:text="${movimiento.concepto}"></td>-->
+            <td th:if="${movimiento.concepto=='1'}">Papeleria</td>
+            <td th:if="${movimiento.concepto=='2'}">Sevicios Publicos/Privados</td>
+            <td th:if="${movimiento.concepto=='3'}">Caja Menor</td>
+            <td th:if="${movimiento.concepto=='4'}">Operativo</td>
+            <td th:if="${movimiento.concepto=='5'}">Tributario</td>
+            <td th:if="${movimiento.concepto=='6'}">Mobiliario</td>
+            <td th:if="${movimiento.concepto=='7'}">Maquinaria y Equipos</td>
+            <td th:if="${movimiento.concepto=='8'}">Nomina</td>
+            <td th:text="${movimiento.monto}"></td>
+            <!--<td th:text="${movimiento.empresa}"></td>-->
+            <td th:text="${movimiento.empleado.nombre}"></td>
+            <td th:text="${movimiento.fechaCreacion}"></td>
+            <td th:text="${movimiento.fechaActualizacion}"></td>
+            <td>
+                <button type="button" class="btn btn-warning"><a
+                        th:href="@{/EditarMovimiento/{id}(id=${movimiento.idMovimiento})}">Editar</a></button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-danger"><a
+                        th:href="@{/EliminarMovimiento/{id}(id=${movimiento.idMovimiento})}">Eliminar</a></button>
+            </td>
+        </tr>
+    </table>
+
+    <!--Crear boton que sirve para agregar nuevas empresas-->
+    <button type="button" class="btn btn-info"><a th:href="@{/AgregarMovimiento}">Agregar Movimiento</a></button>
+    <br><br>
+    <button type="button" class="btn btn-primary"><a th:href="@{/VerEmpresas}">Ver Lista Empresa</a></button>
+    <br><br>
+    <button type="button" class="btn btn-primary"><a th:href="@{/VerEmpleados}">Ver Lista Empleados</a></button>
+
+</div>
+
+<script th:inline="javascript">
+    window.onload = function () {
+
+        var msg = [[${mensaje}]];
+        if (msg == "saveOK") {
+            Command : toastr["success"]("Movimiento creado con éxito!")
+        } else if (msg == "updateOK") {
+            Command : toastr["success"]("Movimiento actualizado con éxito!")
+        } else if (msg == "deleteOK") {
+            Command : toastr["error"]("Movimiento eliminado con éxito!")
+        } else if (msg == "deleteError") {
+            Command : toastr["error"]("Movimiento no ha sido eliminado!")
+        }
+        toastr.options = {
+            "positionClass": "toast-top-right",
+            "showDuration": "300",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut",
+        }
+    }
+</script>
+
+</body>
+</html>

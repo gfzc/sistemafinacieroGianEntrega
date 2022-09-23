@@ -66,7 +66,7 @@ public class EmpresaController {
             return "redirect:/VerEmpresas";
         }
         redirectAttributes.addFlashAttribute("mensaje","updateError");
-        return "redirect:/EditarEmpresa";
+        return "redirect:/EditarEmpresa/" + actEmpresa.getIdEmpresa();
 
     }
 
