@@ -69,7 +69,8 @@
             <div class="form-group col-md-12">
                 <label class="col-md-3" for="fechaCreacion">Fecha Creacion de la Empresa:</label>
                 <div class="col-md-6">
-                    <input type="date" th:field="*{fechaCreacion}" class="form-control" id="fechaCreacion" required="required">
+                    <input type="date" th:field="*{fechaCreacion}" class="form-control" id="fechaCreacion"
+                           required="required" readonly>
                 </div>
             </div>
         </div>
@@ -85,5 +86,10 @@
     <a href="javascript:history.go(-1)" class="btn btn-info" role="button">Atrás</a>
 </div>
 
+<script th:inline="javascript">
+    window.onload = function () {
+    document.getElementById("fechaCreacion").value = new Date().toJSON().slice(0, 10).replace(/-/g, '-');
+    }
+</script>
 </body>
 </html>

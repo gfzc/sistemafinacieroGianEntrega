@@ -92,7 +92,7 @@
             <div class="form-group col-md-12">
                 <label class="col-md-3" for="fechaActualizacion">Fecha Actualizacion:</label>
                 <div class="col-md-6">
-                    <input type="date" th:field="*{fechaActualizacion}" class="form-control" id="fechaActualizacion">
+                    <input type="date" th:field="*{fechaActualizacion}" class="form-control" id="fechaActualizacion" readonly>
                 </div>
             </div>
         </div>
@@ -108,6 +108,12 @@
     <br>
     <a href="javascript:history.go(-1)" class="btn btn-info" role="button">Atrás</a>
 </div>
+
+<script th:inline="javascript">
+    window.onload = function () {
+        document.getElementById("fechaActualizacion").value = new Date().toJSON().slice(0, 10).replace(/-/g, '-');
+    }
+</script>
 
 </body>
 </html>

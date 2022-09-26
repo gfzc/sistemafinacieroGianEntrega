@@ -44,9 +44,9 @@ public class MovimientoDinero {
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date fechaActualizacion;
 
-//    @ManyToOne
-//    @JoinColumn(name = "id_empresa", insertable = false, updatable = false)
-//    private Empresa empresa;
+    @ManyToOne
+    @JoinColumn(name = "id_empresa")
+    private Empresa empresa;
 
     @ManyToOne
     @JoinColumn(name = "id_empleado")

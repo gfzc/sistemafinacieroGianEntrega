@@ -89,5 +89,22 @@ public class MovimientoDineroController {
         return "redirect:/VerMovimientos";
 
     }
+    //Filtrar movimientos por Empleado
+    @GetMapping("/Empleado/{id}/Movimientos")
+    public String movEmpleado(@PathVariable("id")Integer id, Model model){
+        List<MovimientoDinero> listMovimientos = movimientoDineroService.obtenerPorEmpleado(id);
+        model.addAttribute("listMovimientos", listMovimientos);
+        return "verMovimientos"; //Llama al html
+
+    }
+    //Filtrar movimientos por Empresa
+    @GetMapping("/Empresa/{id}/Movimientos")
+    public String movEmpresa(@PathVariable("id")Integer id, Model model){
+        List<MovimientoDinero> listMovimientos = movimientoDineroService.obtenerPorEmpresa(id);
+        model.addAttribute("listMovimientos", listMovimientos);
+        return "verMovimientos"; //Llama al html
+
+    }
 
 }
+

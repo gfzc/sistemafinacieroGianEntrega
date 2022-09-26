@@ -34,6 +34,7 @@
             <th>Fecha Creacion</th>
             <th>Fecha Actualizacion</th>
             <th>Empleados</th>
+            <th>Movimientos</th>
             <th>Editar</th>
             <th>Eliminar</th>
         </tr>
@@ -44,10 +45,11 @@
             <td th:text="${empresa.nit}"></td>
             <td th:text="${empresa.direccion}"></td>
             <td th:text="${empresa.telefono}"></td>
-            <td th:text="${empresa.fechaCreacion}"></td>
-            <td th:text="${empresa.fechaActualizacion}"></td>
+            <td th:text="${#dates.format(empresa.fechaCreacion, 'dd/MM/yyyy')}"></td>
+            <td th:text="${#dates.format(empresa.fechaActualizacion, 'dd/MM/yyyy')}"></td>
 
             <td><button type="button" class="btn btn-info"><a th:href="@{/Empresa/{id}/Empleados (id=${empresa.idEmpresa})}">Ver</a></button></td>
+            <td><button type="button" class="btn btn-primary"><a th:href="@{/Empresa/{id}/Movimientos(id=${empresa.idEmpresa})}">Ver</a></button></td>
             <td><button type="button" class="btn btn-warning"><a th:href="@{/EditarEmpresa/{id}(id=${empresa.idEmpresa})}">Editar</a></button></td>
             <td><button type="button" class="btn btn-danger"><a th:href="@{/EliminarEmpresa/{id}(id=${empresa.idEmpresa})}">Eliminar</a></button></td>
         </tr>

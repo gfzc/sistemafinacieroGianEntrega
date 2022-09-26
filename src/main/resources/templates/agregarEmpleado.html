@@ -75,7 +75,7 @@
                 <label class="col-md-3" for="fechaCreacion">Fecha Creacion del Empleado:</label>
                 <div class="col-md-6">
                     <input type="date" th:field="*{fechaCreacion}" class="form-control" id="fechaCreacion"
-                           required="required">
+                           required="required" readonly>
                 </div>
             </div>
         </div>
@@ -91,6 +91,13 @@
     <br>
     <a href="javascript:history.go(-1)" class="btn btn-info" role="button">Atrás</a>
 </div>
+
+<!--Validacion para fecha local del sistema-->
+<script th:inline="javascript">
+    window.onload = function () {
+        document.getElementById("fechaCreacion").value = new Date().toJSON().slice(0, 10).replace(/-/g, '-');
+    }
+</script>
 
 </body>
 </html>

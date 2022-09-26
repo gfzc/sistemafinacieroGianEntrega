@@ -31,7 +31,8 @@
             <div class="form-group col-md-12">
                 <label class="col-md-3" for="id">ID de la Empresa:</label>
                 <div class="col-md-6">
-                    <input type="text" th:field="*{idEmpresa}" class="form-control" id="id" required="required" readonly>
+                    <input type="text" th:field="*{idEmpresa}" class="form-control" id="id" required="required"
+                           readonly>
                 </div>
             </div>
         </div>
@@ -80,17 +81,19 @@
             <div class="form-group col-md-12">
                 <label class="col-md-3" for="fechaCreacion">Fecha Creacion de la Empresa:</label>
                 <div class="col-md-6">
-                    <input type="text" th:field="*{fechaCreacion}" class="form-control" id="fechaCreacion" required="required" readonly>
+                    <input type="text" th:field="*{fechaCreacion}" class="form-control" id="fechaCreacion"
+                           required="required" readonly>
                 </div>
             </div>
         </div>
 
-<!--        Campo para fechaActualizacion-->
+        <!--        Campo para fechaActualizacion-->
         <div class="row">
             <div class="form-group col-md-12">
                 <label class="col-md-3" for="fechaActualizacion">Fecha Actualizacion de la Empresa:</label>
                 <div class="col-md-6">
-                    <input type="date" th:field="*{fechaActualizacion}" class="form-control" id="fechaActualizacion">
+                    <input type="date" th:field="*{fechaActualizacion}" class="form-control" id="fechaActualizacion"
+                           readonly>
                 </div>
             </div>
         </div>
@@ -104,6 +107,13 @@
     <br>
     <a href="javascript:history.go(-1)" class="btn btn-info" role="button">Atrás</a>
 </div>
+
+<!--Validacion para fecha local del sistema-->
+<script th:inline="javascript">
+    window.onload = function () {
+        document.getElementById("fechaActualizacion").value = new Date().toJSON().slice(0, 10).replace(/-/g, '-');
+    }
+</script>
 
 </body>
 </html>

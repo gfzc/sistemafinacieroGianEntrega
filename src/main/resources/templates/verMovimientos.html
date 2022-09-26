@@ -50,11 +50,11 @@
             <td th:if="${movimiento.concepto=='6'}">Mobiliario</td>
             <td th:if="${movimiento.concepto=='7'}">Maquinaria y Equipos</td>
             <td th:if="${movimiento.concepto=='8'}">Nomina</td>
-            <td th:text="${movimiento.monto}"></td>
+            <td th:text="${#numbers.formatCurrency(movimiento.monto)}"></td>
             <!--<td th:text="${movimiento.empresa}"></td>-->
             <td th:text="${movimiento.empleado.nombre}"></td>
-            <td th:text="${movimiento.fechaCreacion}"></td>
-            <td th:text="${movimiento.fechaActualizacion}"></td>
+            <td th:text="${#dates.format(movimiento.fechaCreacion, 'dd/MM/yyyy')}"></td>
+            <td th:text="${#dates.format(movimiento.fechaActualizacion, 'dd/MM/yyyy')}"></td>
             <td>
                 <button type="button" class="btn btn-warning"><a
                         th:href="@{/EditarMovimiento/{id}(id=${movimiento.idMovimiento})}">Editar</a></button>
@@ -66,7 +66,7 @@
         </tr>
     </table>
 
-    <!--Crear boton que sirve para agregar nuevas empresas-->
+    <!--Crear boton que sirve para agregar nuevas -->
     <button type="button" class="btn btn-info"><a th:href="@{/AgregarMovimiento}">Agregar Movimiento</a></button>
     <br><br>
     <button type="button" class="btn btn-primary"><a th:href="@{/VerEmpresas}">Ver Lista Empresa</a></button>
