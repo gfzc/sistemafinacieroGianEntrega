@@ -45,8 +45,10 @@
             <td th:text="${empleado.empresa.nombre}"></td>
             <td th:if="${empleado.rol=='1'}">Administrativo</td>
             <td th:if="${empleado.rol=='2'}">Operativo</td>
-            <td th:text="${#dates.format(empleado.fechaCreacion, 'dd/MM/yyyy')}"></td>
-            <td th:text="${#dates.format(empleado.fechaActualizacion, 'dd/MM/yyyy')}"></td>
+            <!--<td th:text="${empleado.fechaCreacion}"></td>
+            <td th:text="${empleado.fechaActualizacion}"></td>-->
+            <td th:text="${#dates.format(empleado.fechaCreacion, 'yyyy/MM/dd')}"></td>
+            <td th:text="${#dates.format(empleado.fechaActualizacion, 'yyyy/MM/dd')}"></td>
 
             <td><button type="button" class="btn btn-info"><a th:href="@{/Empleado/{id}/Movimientos(id=${empleado.idEmpleado})}">Ver</a></button></td>
             <td><button type="button" class="btn btn-warning"><a th:href="@{/EditarEmpleado/{id}(id=${empleado.idEmpleado})}">Editar</a></button></td>

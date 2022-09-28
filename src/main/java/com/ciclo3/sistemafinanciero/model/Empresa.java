@@ -7,9 +7,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -38,19 +41,15 @@ public class Empresa {
     @Column (name = "telefono")
     private String telefono;
 
+   // @CreationTimestamp
     @Column(name = "fecha_creacion")
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date fechaCreacion;
 
+    // @CreationTimestamp
     @Column(name = "fecha_actualizacion")
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date fechaActualizacion;
-
-    /*@OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL)
-    private List<Empleado> empleado;*/
-
- /*@OneToMany(mappedBy = "empresa")
-  private List<Transaccion> transacciones;*/
 
 
 }

@@ -50,4 +50,19 @@ public class MovimientoDineroService {
         return movimientoDineroRepository.findByEmpresa(id);
     }
 
+    //Servicio suma montos
+    public Long obtenerSumaMonto(){
+        return movimientoDineroRepository.SumaMonto();
+    }
+
+    //Servicio monto empleado
+    public Long MontoEmpleado(Integer id){
+        return movimientoDineroRepository.MontoEmpleado(id);
+    }
+
+    //Servicio monto empresa
+    public Long MontoEmpresa(Integer id){
+        return movimientoDineroRepository.MontoEmpresa(id);
+
+    }
 }

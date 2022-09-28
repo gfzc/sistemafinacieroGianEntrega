@@ -10,12 +10,13 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <style>
-        a{
-           color: white;
+        a {
+            color: white;
         }
-        a:hover{
+
+        a:hover {
             color: black;
-            text-decoration:none;
+            text-decoration: none;
         }
     </style>
 </head>
@@ -24,7 +25,8 @@
 <div class="container-fluid">
     <h1>Lista de Empresas</h1>
     <!--Dibujamos la tabal-->
-    <br><table class="table table-bordered">
+    <br>
+    <table class="table table-bordered">
         <tr>
             <th>ID</th>
             <th>Nombre</th>
@@ -45,13 +47,25 @@
             <td th:text="${empresa.nit}"></td>
             <td th:text="${empresa.direccion}"></td>
             <td th:text="${empresa.telefono}"></td>
-            <td th:text="${#dates.format(empresa.fechaCreacion, 'dd/MM/yyyy')}"></td>
-            <td th:text="${#dates.format(empresa.fechaActualizacion, 'dd/MM/yyyy')}"></td>
+            <td th:text="${#dates.format(empresa.fechaCreacion, 'yyyy/MM/dd')}"></td>
+            <td th:text="${#dates.format(empresa.fechaActualizacion, 'yyyy/MM/dd')}"></td>
 
-            <td><button type="button" class="btn btn-info"><a th:href="@{/Empresa/{id}/Empleados (id=${empresa.idEmpresa})}">Ver</a></button></td>
-            <td><button type="button" class="btn btn-primary"><a th:href="@{/Empresa/{id}/Movimientos(id=${empresa.idEmpresa})}">Ver</a></button></td>
-            <td><button type="button" class="btn btn-warning"><a th:href="@{/EditarEmpresa/{id}(id=${empresa.idEmpresa})}">Editar</a></button></td>
-            <td><button type="button" class="btn btn-danger"><a th:href="@{/EliminarEmpresa/{id}(id=${empresa.idEmpresa})}">Eliminar</a></button></td>
+            <td>
+                <button type="button" class="btn btn-info"><a
+                        th:href="@{/Empresa/{id}/Empleados (id=${empresa.idEmpresa})}">Ver</a></button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-primary"><a
+                        th:href="@{/Empresa/{id}/Movimientos(id=${empresa.idEmpresa})}">Ver</a></button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-warning"><a
+                        th:href="@{/EditarEmpresa/{id}(id=${empresa.idEmpresa})}">Editar</a></button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-danger"><a
+                        th:href="@{/EliminarEmpresa/{id}(id=${empresa.idEmpresa})}">Eliminar</a></button>
+            </td>
         </tr>
     </table>
 
@@ -62,19 +76,16 @@
 
 </div>
 <script th:inline="javascript">
-    window.onload=function() {
+    window.onload = function () {
 
         var msg = [[${mensaje}]];
         if (msg == "saveOK") {
             Command : toastr["success"]("Empresa creada con éxito!")
-        }
-        else if (msg == "updateOK") {
+        } else if (msg == "updateOK") {
             Command : toastr["success"]("Empresa actualizada con éxito!")
-        }
-        else if (msg == "deleteOK") {
+        } else if (msg == "deleteOK") {
             Command : toastr["error"]("Empresa eliminada con éxito!")
-        }
-        else if (msg == "deleteError") {
+        } else if (msg == "deleteError") {
             Command : toastr["error"]("Empresa no ha sido eliminada!")
         }
         toastr.options = {

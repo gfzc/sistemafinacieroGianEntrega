@@ -3,16 +3,16 @@ package com.ciclo3.sistemafinanciero.controller;
 import com.ciclo3.sistemafinanciero.model.Empleado;
 import com.ciclo3.sistemafinanciero.model.Empresa;
 import com.ciclo3.sistemafinanciero.model.MovimientoDinero;
+import com.ciclo3.sistemafinanciero.repositories.MovimientoDineroRepository;
 import com.ciclo3.sistemafinanciero.service.EmpleadoService;
 import com.ciclo3.sistemafinanciero.service.EmpresaService;
 import com.ciclo3.sistemafinanciero.service.MovimientoDineroService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
@@ -24,12 +24,22 @@ public class MovimientoDineroController {
     @Autowired
     EmpleadoService empleadoService;
 
+    @Autowired
+    MovimientoDineroRepository movimientoDineroRepository;
+
     //Controller que lleva a ver movimientos
     @GetMapping("/VerMovimientos") //Anotacion que mapea y crea el servicio
-    public String verMovimientos(Model model, @ModelAttribute("mensaje") String mensaje) { //Metodo para obtener cadenas de con objeto de clase tipo Model, recibe cualquiercosa y modela segun lo necesitado
-        List<MovimientoDinero> listMovimientos = movimientoDineroService.getAllMovimientos(); //Se crea lista de tipo Empleado con el metodo getAll
-        model.addAttribute("listMovimientos", listMovimientos); //Sa alimenta objeto model con lista de movimientos
+    public String verMovimientos(@RequestParam(value = "pagina", required = false, defaultValue = "0") int PageNumber,
+                                 @RequestParam(value = "medida", required = false, defaultValue = "5") int medida,
+                                 Model model, @ModelAttribute("mensaje") String mensaje) {
+        Page<MovimientoDinero> paginaMovimiento = movimientoDineroRepository.findAll(PageRequest.of(PageNumber,medida));
+        //List<MovimientoDinero> listMovimientos = movimientoDineroService.getAllMovimientos();
+        model.addAttribute("listMovimientos", paginaMovimiento.getContent());
+        model.addAttribute("paginas", new int[paginaMovimiento.getTotalPages()]);
+        model.addAttribute("paginaActual", PageNumber);
         model.addAttribute("mensaje", mensaje);
+        Long sumaMonto = movimientoDineroService.obtenerSumaMonto();
+        model.addAttribute("sumaMonto", sumaMonto); //Envia suma de montos a plantilla HTML
         return "verMovimientos"; //LLama a pagina html creada
     }
 
@@ -94,6 +104,8 @@ public class MovimientoDineroController {
     public String movEmpleado(@PathVariable("id")Integer id, Model model){
         List<MovimientoDinero> listMovimientos = movimientoDineroService.obtenerPorEmpleado(id);
         model.addAttribute("listMovimientos", listMovimientos);
+        Long sumaMonto= movimientoDineroService.MontoEmpleado(id);
+        model.addAttribute("sumaMonto", sumaMonto);
         return "verMovimientos"; //Llama al html
 
     }
@@ -102,6 +114,8 @@ public class MovimientoDineroController {
     public String movEmpresa(@PathVariable("id")Integer id, Model model){
         List<MovimientoDinero> listMovimientos = movimientoDineroService.obtenerPorEmpresa(id);
         model.addAttribute("listMovimientos", listMovimientos);
+        Long sumaMonto= movimientoDineroService.MontoEmpresa(id);
+        model.addAttribute("sumaMonto", sumaMonto);
         return "verMovimientos"; //Llama al html
 
     }

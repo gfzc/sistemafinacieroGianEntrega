@@ -33,12 +33,13 @@ public class Empleado {
    @JoinColumn(name = "rol", insertable = false, updatable = false)
     private String rol;
 
-   @DateTimeFormat(pattern="yyyy-MM-dd")
+
     @Column(name = "fecha_creacion")
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date fechaCreacion;
 
-    @DateTimeFormat(pattern="yyyy-MM-dd")
     @Column(name = "fecha_actualizacion")
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date fechaActualizacion;
 
     @ManyToOne

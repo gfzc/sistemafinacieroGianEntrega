@@ -76,18 +76,18 @@
             </div>
         </div>
 
-        <!--Campo para fechaCreacion -->
+        <!--Campo para fechaCreacion-->
         <div class="row">
             <div class="form-group col-md-12">
                 <label class="col-md-3" for="fechaCreacion">Fecha Creacion de la Empresa:</label>
                 <div class="col-md-6">
-                    <input type="text" th:field="*{fechaCreacion}" class="form-control" id="fechaCreacion"
+                    <input type="date" th:field="*{fechaCreacion}" class="form-control" id="fechaCreacion"
                            required="required" readonly>
                 </div>
             </div>
         </div>
 
-        <!--        Campo para fechaActualizacion-->
+        <!--Campo para fechaActualizacion-->
         <div class="row">
             <div class="form-group col-md-12">
                 <label class="col-md-3" for="fechaActualizacion">Fecha Actualizacion de la Empresa:</label>
@@ -97,6 +97,7 @@
                 </div>
             </div>
         </div>
+
         <!--Crear boton que envia todo y termina-->
         <div class="row">
             <div class="col-md-2">
@@ -111,7 +112,7 @@
 <!--Validacion para fecha local del sistema-->
 <script th:inline="javascript">
     window.onload = function () {
-        document.getElementById("fechaActualizacion").value = new Date().toJSON().slice(0, 10).replace(/-/g, '-');
+        document.getElementById("fechaActualizacion").value = new Date().toJSON().slice(0, 10).replace(/-/g,'-');
     }
 </script>
 
