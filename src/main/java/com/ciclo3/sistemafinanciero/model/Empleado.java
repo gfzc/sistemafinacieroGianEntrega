@@ -10,8 +10,6 @@ import java.util.List;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-//@Getter
-//Setter
 @Data
 @Table(name = "empleado")
 public class Empleado {
@@ -21,25 +19,27 @@ public class Empleado {
     @Column(name = "id_empleado")
     private Integer idEmpleado;
 
-   /* @Column(name = "id_empresa")
-    private Integer idEmpresa;*/
-
-    @Column (name = "nombre")
+    @Column(name = "nombre")
     private String nombre;
 
     @Column(name = "email", unique = true)
     private String email;
 
-   @JoinColumn(name = "rol", insertable = false, updatable = false)
+    @JoinColumn(name = "rol", insertable = false, updatable = false)
     private String rol;
 
+    @Column(name = "password")
+    public String password;
+
+    @Column(name = "estado")
+    public Boolean estado;
 
     @Column(name = "fecha_creacion")
-    @DateTimeFormat(pattern="yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date fechaCreacion;
 
     @Column(name = "fecha_actualizacion")
-    @DateTimeFormat(pattern="yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date fechaActualizacion;
 
     @ManyToOne

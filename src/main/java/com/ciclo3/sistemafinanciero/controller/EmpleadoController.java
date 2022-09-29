@@ -5,6 +5,9 @@ import com.ciclo3.sistemafinanciero.model.Empresa;
 import com.ciclo3.sistemafinanciero.service.EmpleadoService;
 import com.ciclo3.sistemafinanciero.service.EmpresaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +25,7 @@ public class EmpleadoController {
     EmpleadoService empleadoService;
     @Autowired
     EmpresaService empresaService;
+
 
     //Metodo para ver Empleado
     @GetMapping("/VerEmpleados") //Anotacion que mapea y crea el servicio VerEmpleado
@@ -47,6 +51,8 @@ public class EmpleadoController {
     //Metodo par guardar Empleado
     @PostMapping("/GuardarEmpleado")
     public String guardarEmpleado(Empleado emple, RedirectAttributes redirectAttributes) {
+        String passEncriptada=passwordEncoder().encode(emple.getPassword());
+        emple.setPassword(passEncriptada);
         if (empleadoService.saveOrUpdateEmpleado(emple)) {
             redirectAttributes.addFlashAttribute("mensaje", "saveOK");
             return "redirect:/VerEmpleados";
@@ -68,8 +74,11 @@ public class EmpleadoController {
         return "editarEmpleado";
     }
 
+
     @PostMapping("/ActualizarEmpleado")
     public String ActualizarEmpleado(@ModelAttribute("emple") Empleado emple, RedirectAttributes redirectAttributes) {
+        String passEncriptada=passwordEncoder().encode(emple.getPassword());
+        emple.setPassword(passEncriptada);
         if (empleadoService.saveOrUpdateEmpleado(emple)) {
             redirectAttributes.addFlashAttribute("mensaje", "updateOK");
             return "redirect:/VerEmpleados";
@@ -96,4 +105,14 @@ public class EmpleadoController {
         model.addAttribute("emplelist", listEmpleados);
         return "verEmpleados";
     }
+
+    //Metodo para encriptar contraseñas
+   // @Bean
+    public PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
+    }
+
+
+
+
 }

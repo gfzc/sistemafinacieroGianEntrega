@@ -22,7 +22,11 @@
 </head>
 <body>
 
+
 <div class="container-fluid">
+    <br>
+    <button type="button" class="btn btn-danger" style="float:right"><a th:href="@{/logout}">Cerrar Sesion</a></button>
+
     <h1>Lista de Movimientos</h1>
     <!--Dibujamos la tabal-->
     <br>
@@ -63,8 +67,8 @@
     <!--Area navegacion-->
     <nav area-label="Navegacion">
         <ul class="pagination mt-4">
-            <li th:each="pagina, estado: ${paginas}" class="page-item">
-                <a th:href="@{/(pagina=${estado.index})}" class="page-link" th:text="${estado.index} "></a>
+            <li th:class="${paginaActual==estado.index} ? 'active':'' " th:each="pagina, estado: ${paginas}" class="page-item">
+                <a th:href="@{/VerMovimientos/(pagina=${estado.index})}" class="page-link" th:text="${estado.index}+1"></a>
 
 
             </li>

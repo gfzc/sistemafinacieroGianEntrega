@@ -29,8 +29,8 @@ public class MovimientoDineroController {
 
     //Controller que lleva a ver movimientos
     @GetMapping("/VerMovimientos") //Anotacion que mapea y crea el servicio
-    public String verMovimientos(@RequestParam(value = "pagina", required = false, defaultValue = "0") int PageNumber,
-                                 @RequestParam(value = "medida", required = false, defaultValue = "5") int medida,
+    public String verMovimientos(@RequestParam(value = "pagina", required = false, defaultValue = "1") int PageNumber,
+                                 @RequestParam(value = "medida", required = false, defaultValue = "10") int medida,
                                  Model model, @ModelAttribute("mensaje") String mensaje) {
         Page<MovimientoDinero> paginaMovimiento = movimientoDineroRepository.findAll(PageRequest.of(PageNumber,medida));
         //List<MovimientoDinero> listMovimientos = movimientoDineroService.getAllMovimientos();
