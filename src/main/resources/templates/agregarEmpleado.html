@@ -21,6 +21,8 @@
 <body>
 
 <div class="container">
+    <br>
+    <button type="button" class="btn btn-danger" style="float:right"><a th:href="@{/logout}">Cerrar Sesion</a></button>
     <h1>Ingrese Los Datos</h1>
     <!--Crea formulario para llenar datos de Empresa y los guarda en el objeto emp -->
     <br>
@@ -62,8 +64,8 @@
                 <label class="col-md-3" for="rol">Rol del Empleado:</label>
                 <div class="col-md-6">
                     <select th:field="*{rol}" class="form-control" id="rol" required="required">
-                        <option th:value=1>Admin</option>
-                        <option th:value=2>Operario</option>
+                        <option th:value='ROLE_ADMIN'>Admin</option>
+                        <option th:value='ROLE_USER'>Operario</option>
                     </select>
                 </div>
             </div>

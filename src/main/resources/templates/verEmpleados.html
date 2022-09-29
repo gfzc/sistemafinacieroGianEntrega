@@ -22,6 +22,8 @@
 <body>
 
 <div class="container-fluid">
+    <br>
+    <button type="button" class="btn btn-danger" style="float:right"><a th:href="@{/logout}">Cerrar Sesion</a></button>
     <h1>Lista de Empleados</h1>
     <!--Dibujamos la tabal-->
     <br><table class="table table-bordered">
@@ -31,6 +33,7 @@
             <th>Correo</th>
             <th>Empresa</th>
             <th>Rol</th>
+            <th>Estado</th>
             <th>Fecha Creacion</th>
             <th>Fecha Actualizacion</th>
             <th>Movimientos</th>
@@ -43,8 +46,10 @@
             <td th:text="${empleado.nombre}"></td>
             <td th:text="${empleado.email}"></td>
             <td th:text="${empleado.empresa.nombre}"></td>
-            <td th:if="${empleado.rol=='1'}">Administrativo</td>
-            <td th:if="${empleado.rol=='2'}">Operativo</td>
+            <td th:if="${empleado.rol=='ROLE_ADMIN'}">Administrativo</td>
+            <td th:if="${empleado.rol=='ROLE_USER'}">Operativo</td>
+            <td th:if="${empleado.estado==true}">Activo</td>
+            <td th:if="${empleado.estado==false}">Inactivo</td>
             <!--<td th:text="${empleado.fechaCreacion}"></td>
             <td th:text="${empleado.fechaActualizacion}"></td>-->
             <td th:text="${#dates.format(empleado.fechaCreacion, 'yyyy/MM/dd')}"></td>

@@ -6,6 +6,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.sql.DataSource;
@@ -19,7 +20,10 @@ public class SeguridadConfig {
 
     @Autowired
     public void configAutenticacion(AuthenticationManagerBuilder autenticacion) throws Exception{
-
+        autenticacion.jdbcAuthentication().passwordEncoder(new BCryptPasswordEncoder())
+                .dataSource(dataSource)
+                .usersByUsernameQuery("select email,password,estado from empleado where email=?")
+                .authoritiesByUsernameQuery("select email,rol from empleado where email=?");
 
     }
 

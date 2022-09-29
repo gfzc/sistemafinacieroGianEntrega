@@ -25,7 +25,7 @@ public class Empleado {
     @Column(name = "email", unique = true)
     private String email;
 
-    @JoinColumn(name = "rol", insertable = false, updatable = false)
+    //@JoinColumn(name = "rol", insertable = false, updatable = false)
     private String rol;
 
     @Column(name = "password")
