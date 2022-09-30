@@ -89,7 +89,7 @@
             <div class="form-group col-md-12">
                 <label class="col-md-3" for="password">Contraseña del Empleado:</label>
                 <div class="col-md-6">
-                    <input type="password" th:field="*{password}" class="form-control" id="password" required="required">
+                    <input type="text" th:field="*{password}" class="form-control" id="password" required="required">
                 </div>
             </div>
         </div>
@@ -145,5 +145,13 @@
         document.getElementById("fechaActualizacion").value = new Date().toJSON().slice(0, 10).replace(/-/g, '-');
     }
 </script>
+
+<!--Script para ocultal la contraseña-->
+<script th:inline="javascript">
+    window.onload = function () {
+        document.getElementById("password").type="password"
+    }
+</script>
+
 </body>
 </html>

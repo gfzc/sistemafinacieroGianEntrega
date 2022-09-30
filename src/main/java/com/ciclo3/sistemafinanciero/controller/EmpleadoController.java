@@ -77,8 +77,14 @@ public class EmpleadoController {
 
     @PostMapping("/ActualizarEmpleado")
     public String ActualizarEmpleado(@ModelAttribute("emple") Empleado emple, RedirectAttributes redirectAttributes) {
-        String passEncriptada=passwordEncoder().encode(emple.getPassword());
-        emple.setPassword(passEncriptada);
+        Integer id=emple.getIdEmpleado(); //Saca el id del objeto Empleado
+        String passRegistrada=empleadoService.getEmpleadoByID(id).get().getPassword(); //Con ese id se consulta la contraseña almacenada en la BD
+        if (!emple.getPassword().equals(passRegistrada)){ //Verificamos que las contraseñas sean diferentes
+            String passEncriptada=passwordEncoder().encode(emple.getPassword());
+            emple.setPassword(passEncriptada);
+        }
+        System.out.println(passRegistrada);
+        System.out.println(emple.getPassword());
         if (empleadoService.saveOrUpdateEmpleado(emple)) {
             redirectAttributes.addFlashAttribute("mensaje", "updateOK");
             return "redirect:/VerEmpleados";
