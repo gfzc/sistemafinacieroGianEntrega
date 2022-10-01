@@ -7,14 +7,18 @@ import com.ciclo3.sistemafinanciero.repositories.MovimientoDineroRepository;
 import com.ciclo3.sistemafinanciero.service.EmpleadoService;
 import com.ciclo3.sistemafinanciero.service.EmpresaService;
 import com.ciclo3.sistemafinanciero.service.MovimientoDineroService;
+import com.nimbusds.jose.proc.SecurityContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.security.Security;
 import java.util.List;
 
 @Controller
@@ -30,7 +34,7 @@ public class MovimientoDineroController {
     //Controller que lleva a ver movimientos
     @GetMapping("/VerMovimientos") //Anotacion que mapea y crea el servicio
     public String verMovimientos(@RequestParam(value = "pagina", required = false, defaultValue = "1") int PageNumber,
-                                 @RequestParam(value = "medida", required = false, defaultValue = "10") int medida,
+                                 @RequestParam(value = "medida", required = false, defaultValue = "5") int medida,
                                  Model model, @ModelAttribute("mensaje") String mensaje) {
         Page<MovimientoDinero> paginaMovimiento = movimientoDineroRepository.findAll(PageRequest.of(PageNumber,medida));
         //List<MovimientoDinero> listMovimientos = movimientoDineroService.getAllMovimientos();
@@ -48,8 +52,11 @@ public class MovimientoDineroController {
         MovimientoDinero movimiento= new MovimientoDinero(); //Crea objeto de tipo Movimiento para crear el nuevo utilizando el constructor vacio
         model.addAttribute("mov", movimiento); //Envia el objeto por medio de model
         model.addAttribute("mensaje", mensaje);
-        List<Empleado> listEmpleados = empleadoService.getAllEmpleado(); //Trae la lista de empresas para empleado
-        model.addAttribute("emplelist", listEmpleados); //Modela lista de empresas para empleado
+        //List<Empleado> listEmpleados = empleadoService.getAllEmpleado(); //Trae la lista de empresas para empleado
+        Authentication auth= SecurityContextHolder.getContext().getAuthentication();
+        String correo=auth.getName();
+        Integer idEmpl=movimientoDineroService.IdPorCorreo(correo);
+        model.addAttribute("idEmpl", idEmpl); //Modela lista de empresas para empleado
         return "agregarMovimiento"; //LLama a pagina html creada
 
     }

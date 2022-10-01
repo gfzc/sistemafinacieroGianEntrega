@@ -10,10 +10,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
@@ -112,8 +109,15 @@ public class EmpleadoController {
         return "verEmpleados";
     }
 
+    //Controlador que lleva a template de acceso denegado
+    @RequestMapping(value = "/Denegado")
+    public String accesoDenegado(){
+        return "accesoDenegado";
+
+    }
+
     //Metodo para encriptar contraseñas
-   // @Bean
+   @Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }

@@ -65,4 +65,9 @@ public class MovimientoDineroService {
         return movimientoDineroRepository.MontoEmpresa(id);
 
     }
+
+    //Servicio que obtien id delempleado con el correo
+    public Integer IdPorCorreo(String email){
+        return movimientoDineroRepository.IdPorCorreo(email);
+    }
 }

@@ -25,6 +25,9 @@
 <div class="container-fluid">
     <br>
     <button type="button" class="btn btn-danger" style="float:right"><a th:href="@{/logout}">Cerrar Sesion</a></button>
+    <br><br>
+    <p th:inline="text" style="float:right">User: [[${#httpServletRequest.remoteUser}]]</p>
+
     <h1>Lista de Empresas</h1>
     <!--Dibujamos la tabal-->
     <br>

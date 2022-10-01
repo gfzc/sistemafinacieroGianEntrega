@@ -29,4 +29,7 @@ public interface MovimientoDineroRepository extends JpaRepository<MovimientoDine
     @Query(value="select sum(monto) from movimiento_dinero where id_empleado in (select id_empleado from empleado where id_empresa= ?1)", nativeQuery = true)
     public abstract Long MontoEmpresa(Integer id); //Id empresa
 
+    @Query(value="select id_empleado from empleado where email=?1", nativeQuery = true)
+    public abstract Integer IdPorCorreo(String email);
+
 }
