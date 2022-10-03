@@ -117,7 +117,7 @@ public class EmpleadoController {
     }
 
     //Metodo para encriptar contraseñas
-   @Bean
+   //@Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }

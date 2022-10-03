@@ -59,16 +59,23 @@
             </div>
         </div>
 
+<!--        <div class="row">
+            <div class="form-group col-md-12">
+                <label class="col-md-3" for="empleado">Empleado Responsable:</label>
+                <div class="col-md-6">
+                    <input type="number" th:field="*{empleado}" class="form-control" id="empleado" required="required" readonly>
+                </div>
+            </div>
+        </div>-->
+
         <!--Campo para empleado responsable -->
         <div class="row">
             <div class="form-group col-md-12">
                 <label class="col-md-3" for="empleado">Empleado Responsable:</label>
                 <div class="col-md-6">
-                    <input th:field="*{empleado}" class="form-control" id="empleado" required="required" readonly>
-                    <option th:text="${#httpServletRequest.remoteUser}" th:value="${idEmpl}"></option>
-                    <!--<select th:field="*{empleado}" class="form-control" id="empleado" required="required" readonly>
+                    <select th:field="*{empleado}" class="form-control" id="empleado" required="required" readonly>
                         <option th:text="${#httpServletRequest.remoteUser}" th:value="${idEmpl}"></option>
-                    </select>-->
+                    </select>
                 </div>
             </div>
         </div>

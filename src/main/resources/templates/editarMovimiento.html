@@ -71,16 +71,27 @@
         </div>
 
         <!--Campo para empleado responsable -->
+<!--        <div class="row">
+            <div class="form-group col-md-12">
+                <label class="col-md-3" for="empleado">Empleado Responsable:</label>
+                <div class="col-md-6">
+                    <input type="text" th:value="*{empleado.idEmpleado}" th:text="*{empleado.email}" class="form-control" id="empleado" required="required" readonly>
+                </div>
+            </div>
+        </div>-->
+
+        <!--Campo para empleado responsable -->
         <div class="row">
             <div class="form-group col-md-12">
                 <label class="col-md-3" for="empleado">Empleado Responsable:</label>
                 <div class="col-md-6">
-                    <select th:field="*{empleado}" class="form-control" id="empleado" required="required">
-                        <option th:each="empleado : ${emplelist}" th:text="${empleado.nombre}" th:value="${empleado.idEmpleado}"></option>
+                    <select th:field="*{empleado}" class="form-control" id="empleado" required="required" readonly>
+                        <option th:value="*{empleado.idEmpleado}" th:text="*{empleado.email}"></option>
                     </select>
                 </div>
             </div>
         </div>
+
 
         <!--Campo para fechaCreacion -->
         <div class="row">
